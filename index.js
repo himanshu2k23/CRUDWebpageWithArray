@@ -3,6 +3,7 @@ const app = express();
 const { v4: uuid } = require('uuid');
 const path = require('path');
 const methodOverride = require('method-override');
+const { render } = require('ejs');
 
 const comments = [
     {
@@ -25,7 +26,7 @@ app.set('view engine', 'ejs');
 
 
 app.get('/comments', (req, res) => {
-    console.log({comments})
+    console.log({ comments })
     res.render(path.join(__dirname, 'views/comments.ejs'), { comments });
 });
 app.get('/comments/new', (req, res) => {
@@ -37,9 +38,22 @@ app.post('/comments', (req, res) => {
     const { username, comment } = req.body;
     console.log({ username, comment })
     comments.push({ username, comment, id: uuid() });
-    console.log({comments})
+    console.log({ comments })
     res.redirect('/comments');
 });
+
+app.get('/comments/:id', (req,res)=>{
+    let {id}=req.params;
+    let text=comments.find(x => x.id==id);
+    console.log({text})
+    res.render(path.join(__dirname, 'views/details.ejs'), {text});
+})
+
+app.get('/comments/:id/edit', (req,res)=>{
+    let {id}=req.params;
+    let text=comments.find(x => x.id==id);
+    res.render(path.join(__dirname, 'views/edit.ejs'),{text});
+})
 
 app.listen(3001, () => {
     console.log("ON PORT 3001!")

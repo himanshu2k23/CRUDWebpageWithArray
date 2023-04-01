@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
-</head>
+<%- include('partials/head.ejs') %>
 
 <body>
     <h1>LIST:</h1>
     <ul>
         <% for (let x of comments){%>
-            <li><%= x.comment  %> - <%= x.username %> </li>
+            <li><%= x.comment  %> - <%= x.username %>  <a style="text-decoration:none; font-size: 1em" href="comments/<%= x.id %>" class="material-symbols-outlined">info</a>   <a style="text-decoration:none; font-size: 1em" href="/" class="material-symbols-outlined">delete</a></li>
             <% } %>
     </ul>
-    <a href="comments/new">NEW</a>
+    <a href="comments/new" style="text-decoration:none; font-size: 2em" class="material-symbols-outlined">add</a>
 </body>
 
 </html>

@@ -1,0 +1,9 @@
+<%- include('partials/head.ejs') %>
+
+    <h1><%= text.username  %></h1>
+    <p><%= text.comment %></p>
+    <br>
+    <a href="/comments" style="text-decoration:none; font-size: 1em" class="material-symbols-outlined">home       </a>
+    <a href="/comments/<%= text.id %>/edit" style="text-decoration:none; font-size: 1em"  class="material-symbols-outlined">edit</a>
+</body>
+</html>
